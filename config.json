@@ -1,6 +1,7 @@
 {
-    "title":"Blog Title",
-    "subTitle":"Blog description",
+    "title":"这是一个标题，或许吧",
+    "subTitle":"唯见月寒日暖，来煎人寿",
     "avatarUrl":"https://github.githubassets.com/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last",
+    "nightTheme":"dark_colorblind"
 }
