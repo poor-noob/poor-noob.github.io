@@ -1,8 +1,9 @@
 {
     "title":"业余BLOG",
     "displayTitle":"最近在学TS和Langchain",
-    "subTitle":"Verweile doch, du bist so schön!",
+    "subTitle":"Verweile doch, du bist so schön.",
     "avatarUrl":"https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg",
+    "faviconUrl":"https://github.githubassets.com/favicons/favicon.svg",
     "GMEEK_VERSION":"last",
     "themeMode":"fix",
     "dayTheme":"dark",
