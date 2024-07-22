@@ -1,2 +1,33 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>业余BLOG</title><link>https://poor-noob.github.io</link><description>Verweile doch, du bist so schön.</description><copyright>业余BLOG</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg</url><title>avatar</title><link>https://poor-noob.github.io</link></image><lastBuildDate>Mon, 22 Jul 2024 01:37:28 +0000</lastBuildDate><managingEditor>业余BLOG</managingEditor><ttl>60</ttl><webMaster>业余BLOG</webMaster><item><title>第一周7.15~7.20</title><link>https://poor-noob.github.io/post/di-yi-zhou-7.15~7.20.html</link><description>#代数基本定理：n次复系数多项式方程在复数域上有且仅有n个根。</description><guid isPermaLink="true">https://poor-noob.github.io/post/di-yi-zhou-7.15~7.20.html</guid><pubDate>Sun, 14 Jul 2024 16:33:25 +0000</pubDate></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>业余BLOG</title><link>https://poor-noob.github.io</link><description>Verweile doch, du bist so schön.</description><copyright>业余BLOG</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg</url><title>avatar</title><link>https://poor-noob.github.io</link></image><lastBuildDate>Mon, 22 Jul 2024 02:22:30 +0000</lastBuildDate><managingEditor>业余BLOG</managingEditor><ttl>60</ttl><webMaster>业余BLOG</webMaster><item><title>第一周7.15~7.20</title><link>https://poor-noob.github.io/post/di-yi-zhou-7.15~7.20.html</link><description># 实习进度及成果&#13;
+&#13;
+&lt;details&gt;&#13;
+&lt;summary&gt;&#13;
+&lt;B&gt;每日摘要(已发微信)&lt;/B&gt;&#13;
+&lt;/summary&gt;&#13;
+&#13;
+#### 7.15&#13;
+1、VScode配置通义灵码；&#13;
+2、从Hugging Face下载Gemma，通过LM Studio进行部署后尝试使用；&#13;
+3、学习Typescript和Langchain，通过Python和Typescript链接ChatGPT API；&#13;
+4、初步学习使用Vite，建立了一个简单的页面&#13;
+&#13;
+#### 7.16&#13;
+1、继续学习Type Script，向Langchain导入本地大模型；&#13;
+2、尝试用多个大模型制作基于Vite的登录页面，包含用户名与密码的验证功能&#13;
+&#13;
+#### 7.17&#13;
+1、学习Typescript和Langchain，构建本地知识库；&#13;
+2、向知识库导入Typescript和Vite相关文档，引导ChatGLM基于该知识库实现登录页面&#13;
+&#13;
+#### 7.18&#13;
+1、学习Typescript和Langchain；&#13;
+2、使用LM Studio启动本地服务器，通过链接本地端口调用其中的模型&#13;
+&#13;
+#### 7.19&#13;
+1、学习Typescript和Transformers库的使用；&#13;
+2、初步学习提示词的构建，编写了一个简单的提示词模板&#13;
+&lt;/details&gt;&#13;
+&#13;
+&#13;
+。</description><guid isPermaLink="true">https://poor-noob.github.io/post/di-yi-zhou-7.15~7.20.html</guid><pubDate>Sun, 14 Jul 2024 16:33:25 +0000</pubDate></item></channel></rss>
