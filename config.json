@@ -1,6 +1,6 @@
 {
     "title":"业余BLOG",
-    "displayTitle":"最近在学TS和Langchain",
+    "displayTitle":"一个萌新的BLOG",
     "subTitle":"Verweile doch, du bist so schön.",
     "avatarUrl":"https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg",
     "faviconUrl":"https://github.githubassets.com/favicons/favicon.svg",
@@ -8,6 +8,6 @@
     "themeMode":"fix",
     "dayTheme":"dark",
     "nightTheme":"dark-blue",
-    "bottomText":"到底啦",
+    "bottomText":"且行莫回顾，至处别君情。",
     "needComment":0
 }
