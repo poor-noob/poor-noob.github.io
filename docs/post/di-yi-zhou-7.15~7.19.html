@@ -102,6 +102,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
 </style>
 
 
@@ -161,7 +172,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><strong>摘要：</strong> 7.15~7.19共计五天时间，主要做的是熟悉语言和框架，并在完成基础的学习后进行初步实践。本报告略写学习与了解的过程而详写初步运用的过程，且会附上学习文档、视频的来源与编写的代码文件，同时展示代码的运行效果。</p>
 <p><strong>关键词：Langchain，Typescript，Python，LLM，提示词</strong></p>
 <h3>1、第一个程序</h3>
-<p>本周一直都有在学习Typescript，但是因为网上关于Typescript调用Langchain的教学不像Python的那么多，可参考的主要是官方使用文档<sup><a href="#user-content-fn-1-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-1-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>、部分视频资源<sup><a href="#user-content-fn-2-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-2-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup>以及AI，且在过去的学习中，我更多接触的也是Python。虽然这并不意味着我将会逃避去使用Typescript，但在刚开始构建基于Langchain的相关项目时，我还是选择使用了Python作为编译语言。我尝试编写的首个相关程序如下：</p>
+<p>本周一直都有在学习Typescript，但是因为网上关于Typescript调用Langchain的教学不像Python的那么多，可参考的主要是官方使用文档<sup><a href="#user-content-fn-1-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-1-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>、部分视频资源<sup><a href="#user-content-fn-2-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-2-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup>以及AI，且在过去的学习中，我更多接触的也是Python。虽然这并不意味着我将会逃避去使用Typescript，但在刚开始构建基于Langchain的相关项目时，我还是选择使用了Python作为编译语言。我尝试编写的首个相关程序如下：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">requests</span>
 
 <span class="pl-k">def</span> <span class="pl-en">chat</span>(<span class="pl-s1">prompt</span>, <span class="pl-s1">history</span>):
@@ -179,7 +190,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-en">print</span>(<span class="pl-s">'ChatGLM：'</span>, <span class="pl-s1">response</span>)</pre></div>
 <p>这段代码实现了接收用户输入的文本和对话历史，让运行于本地的服务处理后，返回输出并储存对话记录的功能。当然，它需要搭配相关的本地大语言模型（ChatGLM、Llama、Gemma等）使用，且通过某端口运行后都能套进去。</p>
 <h3>2、改进，实现更多功能</h3>
-<p>显而易见，第一部分程序的功能过于基础，和直接使用模型没什么两样，显然不能满足各类定制化任务需求。因此接下来我继续学习<sup><a href="#user-content-fn-4-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-4-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">3</a></sup>，嵌入了其他功能，部分代码如下：</p>
+<p>显而易见，第一部分程序的功能过于基础，和直接使用模型没什么两样，显然不能满足各类定制化任务需求。因此接下来我继续学习<sup><a href="#user-content-fn-4-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-4-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">3</a></sup>，嵌入了其他功能，部分代码如下：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">document_loaders</span> <span class="pl-k">import</span> <span class="pl-v">DirectoryLoader</span>, <span class="pl-v">UnstructuredFileLoader</span>
 <span class="pl-k">from</span> <span class="pl-s1">langchain</span>.<span class="pl-s1">text_splitter</span> <span class="pl-k">import</span> <span class="pl-v">CharacterTextSplitter</span>
 <span class="pl-k">def</span> <span class="pl-en">load_pdf_doc</span>(<span class="pl-s1">directory</span> <span class="pl-c1">=</span> <span class="pl-s">'docs'</span>):
@@ -193,7 +204,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <a href="https://github.com/user-attachments/files/16328636/default.zip">代码示例.zip</a></p>
 <h3>3、各方向的学习</h3>
 <h4>3.1、Langchain方向</h4>
-<p>之后两天我没有继续研究本地知识库的构建，主要因为上文中所编写的程序过多依赖了教程，如果希望更好地理解相关原理并实现更多功能，我依然需要从更基础的事物开始了解。首先，我选择去学习了提示词模板的编写<sup><a href="#user-content-fn-5-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-5-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">4</a></sup>。部分代码如下：</p>
+<p>之后两天我没有继续研究本地知识库的构建，主要因为上文中所编写的程序过多依赖了教程，如果希望更好地理解相关原理并实现更多功能，我依然需要从更基础的事物开始了解。首先，我选择去学习了提示词模板的编写<sup><a href="#user-content-fn-5-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-5-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">4</a></sup>。部分代码如下：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">from</span> <span class="pl-s1">langchain</span>.<span class="pl-s1">prompts</span> <span class="pl-k">import</span> <span class="pl-v">PromptTemplate</span> <span class="pl-k">as</span> <span class="pl-v">PT</span>
 <span class="pl-v">UserInputs</span><span class="pl-c1">=</span><span class="pl-v">GetValidInputs</span>()
 <span class="pl-v">Prompt_Template</span><span class="pl-c1">=</span><span class="pl-v">PT</span>.<span class="pl-en">from_template</span>(<span class="pl-s">"{adj}的{obj}叫{name}"</span>)
@@ -202,36 +213,36 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><strong>*其中GetValidInputs是我自己定义的一个函数，由于和langchain无关，此处不作说明。</strong><br>
 以上代码定义了一个提示词的模板，并允许用户输入模板中的三个变量。这样，输入给大语言模型的文本就不完全是用户自定义的，可以使AI输出的文本更规范。</p>
 <h4>3.2、Typescript, Vite, LM Studio等方向</h4>
-<p>虽然这些方面的学习贯穿了整周，但是暂时都是偏向理论方向的学习。很抱歉，目前我唯一能拿得出手的也不过是一个由ChatGPT基于和Vite<sup><a href="#user-content-fn-6-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-6-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">5</a></sup>编写的登陆页面，以下为页面截图。<br>
+<p>虽然这些方面的学习贯穿了整周，但是暂时都是偏向理论方向的学习。很抱歉，目前我唯一能拿得出手的也不过是一个由ChatGPT基于和Vite<sup><a href="#user-content-fn-6-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-6-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">5</a></sup>编写的登陆页面，以下为页面截图。<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5b1af416-c12f-4afc-a4b5-e232ee707f9e"><img width="400" alt="微信图片_20240722150145" src="https://github.com/user-attachments/assets/5b1af416-c12f-4afc-a4b5-e232ee707f9e" style="max-width: 100%;"></a><br>
-LM Studio<sup><a href="#user-content-fn-7-5f2bbd0e769557aa09201cd1498c0309" id="user-content-fnref-7-5f2bbd0e769557aa09201cd1498c0309" data-footnote-ref="" aria-describedby="footnote-label">6</a></sup>的使用比较方便，不过我对其的研究也确实较少，所做的不过是从HuggingFace下载模型，导入至LMS，最后直接使用或是开放至本地服务器的某端口上。</p>
+LM Studio<sup><a href="#user-content-fn-7-8d6a9c4352ba13409e2d458cd31d1721" id="user-content-fnref-7-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-ref="" aria-describedby="footnote-label">6</a></sup>的使用比较方便，不过我对其的研究也确实较少，所做的不过是从HuggingFace下载模型，导入至LMS，最后直接使用或是开放至本地服务器的某端口上。</p>
 <h3>4、总结</h3>
 <p>总的来说，这一周下来我所学的内容并不算多，目前而言，我还是太依赖于教程与AI的帮助。如果想要独立地基于Langchain去编写一个辅助工作的程序，我还有一段长路要走。我接下来的学习将会以Langchain的运用为核心，同时继续跟进学习Typescript。</p>
 <p align="right">以上。</p>
 <p>*参考文档、视频等位于脚注处</p>
 <section data-footnotes="" class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes</h2>
 <ol>
-<li id="user-content-fn-1-5f2bbd0e769557aa09201cd1498c0309">
+<li id="user-content-fn-1-8d6a9c4352ba13409e2d458cd31d1721">
 <p><a href="https://www.runoob.com/typescript/ts-tutorial.html">Typescript教程</a><br>
-<a href="https://www.bilibili.com/video/BV14Z4y1u7pi/">Typescript视频教程</a> <a href="#user-content-fnref-1-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+<a href="https://www.bilibili.com/video/BV14Z4y1u7pi/">Typescript视频教程</a> <a href="#user-content-fnref-1-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-2-5f2bbd0e769557aa09201cd1498c0309">
-<p><a href="https://www.bilibili.com/video/BV1th4y1n7jJ/">Typescript+Langchain（构建网页的视频教程，很短）</a> <a href="#user-content-fnref-2-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-2-8d6a9c4352ba13409e2d458cd31d1721">
+<p><a href="https://www.bilibili.com/video/BV1th4y1n7jJ/">Typescript+Langchain（构建网页的视频教程，很短）</a> <a href="#user-content-fnref-2-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-4-5f2bbd0e769557aa09201cd1498c0309">
+<li id="user-content-fn-4-8d6a9c4352ba13409e2d458cd31d1721">
 <p><a href="https://www.bilibili.com/video/BV1t8411y7fp/">Langchain+ChatGLM构建本地知识库1</a><br>
-<a href="https://www.bilibili.com/video/BV13M4y1e7cN/">Langchain+ChatGLM构建本地知识库2</a> <a href="#user-content-fnref-4-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+<a href="https://www.bilibili.com/video/BV13M4y1e7cN/">Langchain+ChatGLM构建本地知识库2</a> <a href="#user-content-fnref-4-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-5-5f2bbd0e769557aa09201cd1498c0309">
+<li id="user-content-fn-5-8d6a9c4352ba13409e2d458cd31d1721">
 <p><a href="https://python.langchain.com.cn/docs/">Langchain使用文档（较繁琐但详细且官方）</a><br>
-<a href="https://www.bilibili.com/video/BV1tw411k76M/">Langchain教学视频（简明易懂，能作为引入）</a> <a href="#user-content-fnref-5-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a></p>
+<a href="https://www.bilibili.com/video/BV1tw411k76M/">Langchain教学视频（简明易懂，能作为引入）</a> <a href="#user-content-fnref-5-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-6-5f2bbd0e769557aa09201cd1498c0309">
-<p><a href="https://vitejs.cn/vite3-cn/guide/">Vite使用文档（构建网页用，官方文档）</a> <a href="#user-content-fnref-6-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 5" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-6-8d6a9c4352ba13409e2d458cd31d1721">
+<p><a href="https://vitejs.cn/vite3-cn/guide/">Vite使用文档（构建网页用，官方文档）</a> <a href="#user-content-fnref-6-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 5" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-7-5f2bbd0e769557aa09201cd1498c0309">
+<li id="user-content-fn-7-8d6a9c4352ba13409e2d458cd31d1721">
 <p><a href="https://lmstudio.ai/docs/welcome">LM Studio使用文档（LMS界面挺好懂，可以不看）</a><br>
-<a href="https://huggingface.co/">Hugging Face官网（下载各类大语言模型用）</a> <a href="#user-content-fnref-7-5f2bbd0e769557aa09201cd1498c0309" data-footnote-backref="" aria-label="Back to reference 6" class="data-footnote-backref">↩</a></p>
+<a href="https://huggingface.co/">Hugging Face官网（下载各类大语言模型用）</a> <a href="#user-content-fnref-7-8d6a9c4352ba13409e2d458cd31d1721" data-footnote-backref="" aria-label="Back to reference 6" class="data-footnote-backref">↩</a></p>
 </li>
 </ol>
 </section></div>
@@ -256,7 +267,7 @@ if(""!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
 var utterancesLoad=0;
 
 console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
@@ -267,6 +278,72 @@ document.getElementById("pathHome").setAttribute("d",IconList["home"]);
 document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
 
 </script>
 
