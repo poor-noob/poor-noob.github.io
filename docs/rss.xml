@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>业余BLOG</title><link>https://poor-noob.github.io</link><description>Verweile doch, du bist so schön.</description><copyright>业余BLOG</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg</url><title>avatar</title><link>https://poor-noob.github.io</link></image><lastBuildDate>Fri, 06 Sep 2024 11:00:27 +0000</lastBuildDate><managingEditor>业余BLOG</managingEditor><ttl>60</ttl><webMaster>业余BLOG</webMaster><item><title>近期情况8.29~9.6</title><link>https://poor-noob.github.io/post/jin-qi-qing-kuang-8.29~9.6.html</link><description># 近期实习情况&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>业余BLOG</title><link>https://poor-noob.github.io</link><description>Verweile doch, du bist so schön.</description><copyright>业余BLOG</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg</url><title>avatar</title><link>https://poor-noob.github.io</link></image><lastBuildDate>Fri, 06 Sep 2024 11:14:00 +0000</lastBuildDate><managingEditor>业余BLOG</managingEditor><ttl>60</ttl><webMaster>业余BLOG</webMaster><item><title>近期情况8.29~9.6</title><link>https://poor-noob.github.io/post/jin-qi-qing-kuang-8.29~9.6.html</link><description># 近期实习情况&#13;
 本项目所涉及代码：&#13;
 项目1：[嵌入项目](https://github.com/user-attachments/files/16906725/doc_RAG1.zip)&#13;
 项目2：[提示词优化](https://github.com/user-attachments/files/16906731/SSSimproved.zip)&#13;
@@ -13,7 +13,12 @@
 1. 通过大模型总结行业信息的程序&#13;
 2. 文本嵌入后进一步建立本地知识库&#13;
 &#13;
-由于项目内容较多，本文档仅介绍第一个项目及两个项目的通用内容。</description><guid isPermaLink="true">https://poor-noob.github.io/post/jin-qi-qing-kuang-8.15~8.28--xiang-mu-yi.html</guid><pubDate>Tue, 27 Aug 2024 18:55:20 +0000</pubDate></item><item><title>近期情况7.20~8.14</title><link>https://poor-noob.github.io/post/jin-qi-qing-kuang-7.20~8.14.html</link><description>因7.29至8.11有其他相关项目，故进度略缓慢，抱歉&#13;
+**本项目相关程序：**&#13;
+[行业信息总结.zip](https://github.com/user-attachments/files/16768157/SearchScrapeSummarizeFiles.zip)&#13;
+[爬虫+文本嵌入+本地知识库程序.zip](https://github.com/user-attachments/files/16766494/simple_rag.zip)&#13;
+[更稳定的本地知识库建立，但不包含爬虫.zip](https://github.com/user-attachments/files/16768116/doc_RAG.zip)&#13;
+## 1、通用部分&#13;
+由于两个项目均使用爬虫相关代码，故最先介绍。</description><guid isPermaLink="true">https://poor-noob.github.io/post/jin-qi-qing-kuang-8.15~8.28--xiang-mu-yi.html</guid><pubDate>Tue, 27 Aug 2024 18:55:20 +0000</pubDate></item><item><title>近期情况7.20~8.14</title><link>https://poor-noob.github.io/post/jin-qi-qing-kuang-7.20~8.14.html</link><description>因7.29至8.11有其他相关项目，故进度略缓慢，抱歉&#13;
 本页面所编写代码文件：[search_v2.zip](https://github.com/user-attachments/files/16608054/search_v2.zip)&#13;
 &#13;
 # 近期实习情况&#13;

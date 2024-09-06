@@ -12,14 +12,24 @@
 1. 通过大模型总结行业信息的程序
 2. 文本嵌入后进一步建立本地知识库
 
-由于项目内容较多，本文档仅介绍第一个项目及两个项目的通用内容。">
+**本项目相关程序：**
+[行业信息总结.zip](https://github.com/user-attachments/files/16768157/SearchScrapeSummarizeFiles.zip)
+[爬虫+文本嵌入+本地知识库程序.zip](https://github.com/user-attachments/files/16766494/simple_rag.zip)
+[更稳定的本地知识库建立，但不包含爬虫.zip](https://github.com/user-attachments/files/16768116/doc_RAG.zip)
+## 1、通用部分
+由于两个项目均使用爬虫相关代码，故最先介绍。">
 <meta property="og:title" content="近期情况8.15~8.28:项目一">
 <meta property="og:description" content="# 近期实习情况
 近期主要进行两个项目：
 1. 通过大模型总结行业信息的程序
 2. 文本嵌入后进一步建立本地知识库
 
-由于项目内容较多，本文档仅介绍第一个项目及两个项目的通用内容。">
+**本项目相关程序：**
+[行业信息总结.zip](https://github.com/user-attachments/files/16768157/SearchScrapeSummarizeFiles.zip)
+[爬虫+文本嵌入+本地知识库程序.zip](https://github.com/user-attachments/files/16766494/simple_rag.zip)
+[更稳定的本地知识库建立，但不包含爬虫.zip](https://github.com/user-attachments/files/16768116/doc_RAG.zip)
+## 1、通用部分
+由于两个项目均使用爬虫相关代码，故最先介绍。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://poor-noob.github.io/post/jin-qi-qing-kuang-8.15~8.28--xiang-mu-yi.html">
 <meta property="og:image" content="https://s2.loli.net/2024/07/22/gCvkoOUSEfqXyhR.jpg">
@@ -96,10 +106,10 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>通过大模型总结行业信息的程序</li>
 <li>文本嵌入后进一步建立本地知识库</li>
 </ol>
-<p>由于项目内容较多，本文档仅介绍第一个项目及两个项目的通用内容。<br>
-项目二的独有内容参见：<a href="https://poor-noob.github.io/post/jin-qi-qing-kuang-8.15~8.23--xiang-mu-er.html" rel="nofollow">近期情况8.15~8.23:项目二</a></p>
 <p><strong>本项目相关程序：</strong><br>
-<a href="https://github.com/user-attachments/files/16768157/SearchScrapeSummarizeFiles.zip">行业信息总结.zip</a></p>
+<a href="https://github.com/user-attachments/files/16768157/SearchScrapeSummarizeFiles.zip">行业信息总结.zip</a><br>
+<a href="https://github.com/user-attachments/files/16766494/simple_rag.zip">爬虫+文本嵌入+本地知识库程序.zip</a><br>
+<a href="https://github.com/user-attachments/files/16768116/doc_RAG.zip">更稳定的本地知识库建立，但不包含爬虫.zip</a></p>
 <h2>1、通用部分</h2>
 <p>由于两个项目均使用爬虫相关代码，故最先介绍。</p>
 <h3>1.1、引入库，设置全局变量</h3>
@@ -330,8 +340,136 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/237fefea-e348-4422-86bc-9e211994b47a"><img width="487" alt="234f75ad343b4e2bdaf2d6c5487809b" src="https://github.com/user-attachments/assets/237fefea-e348-4422-86bc-9e211994b47a" style="max-width: 100%;"></a></p>
 <h4>返回页面总结、页面排名及超链接：</h4>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/08fa9de0-454a-426d-9fa3-d00bfeae7fd0"><img width="1103" alt="5d2700744b7407d3aef92a3283da719" src="https://github.com/user-attachments/assets/08fa9de0-454a-426d-9fa3-d00bfeae7fd0" style="max-width: 100%;"></a></p>
-<h2>3、简要评价</h2>
-<p>该程序目前在稳定运行方面尚有欠缺，爬虫的性能依然存在相当的改进空间。此外，提示词的撰写也并非完美，对页面相关度的排序还有相当的优化空间。</p></div>
+<h3>2.5、简要评价</h3>
+<p>该程序目前在稳定运行方面尚有欠缺，爬虫的性能依然存在相当的改进空间。此外，提示词的撰写也并非完美，对页面相关度的排序还有相当的优化空间。</p>
+<h2>3、项目二：嵌入+本地知识库建立</h2>
+<p>本项目来源于项目一的最初解决方案。由于运行效率和运行效果都较为一般，现已不作为项目一的解决方案进行开发，而是作为另一方向上的探索，以供未来参考。</p>
+<h3>3.1、引入库，设置全局变量</h3>
+<p>os用于执行对计算机的相关操作，如创建、写入目录。<br>
+DirectoryLoader用于读取文件路径，TextLoader用于阅读文件本身。<br>
+RetrievalQA用于创建检索链。<br>
+CharacterTextSplitter用于切分文件中的大段文字，便于进一步处理。<br>
+HuggingFaceEmbeddings用于使用从HuggingFace上下载的本地嵌入模型进行文本嵌入。<br>
+ChatOllama用于链接Ollama的语言模型进行对话。<br>
+Chroma用于储存嵌入文本，创建向量库。<br>
+path_dict定义文档读取路径和向量库存储路径，embedding_model_dict定义嵌入模型路径。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">document_loaders</span> <span class="pl-k">import</span> <span class="pl-v">DirectoryLoader</span>, <span class="pl-v">TextLoader</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain</span>.<span class="pl-s1">chains</span>.<span class="pl-s1">retrieval_qa</span>.<span class="pl-s1">base</span> <span class="pl-k">import</span> <span class="pl-v">RetrievalQA</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain</span>.<span class="pl-s1">text_splitter</span> <span class="pl-k">import</span> <span class="pl-v">CharacterTextSplitter</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain_huggingface</span> <span class="pl-k">import</span> <span class="pl-v">HuggingFaceEmbeddings</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">chat_models</span> <span class="pl-k">import</span> <span class="pl-v">ChatOllama</span>
+<span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">vectorstores</span> <span class="pl-k">import</span> <span class="pl-v">Chroma</span>
+
+<span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-v">ChatOllama</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
+
+<span class="pl-s1">path_dict</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">"docs_path"</span>: <span class="pl-s">"Path/To/Your/Dict/docs"</span>,
+    <span class="pl-s">"chroma_path"</span>: <span class="pl-s">"Path/To/Your/Dict/VectorStore"</span>
+}
+
+<span class="pl-s1">embedding_model_dict</span> <span class="pl-c1">=</span> {
+    <span class="pl-s">"ernie-tiny"</span>: <span class="pl-s">"Path/To/Your/Dict/ernie-3.0-nano-zh"</span>,
+    <span class="pl-s">"ernie-base"</span>: <span class="pl-s">"Path/To/Your/Dict/ernie-3.0-base-zh"</span>,
+    <span class="pl-s">"text2vec"</span>: <span class="pl-s">"Path/To/Your/Dict/text2vec-large-chinese"</span>,
+    <span class="pl-s">"text2vec2"</span>: <span class="pl-s">"Path/To/Your/Dict/sbert-base-chinese-nli"</span>,
+    <span class="pl-s">"text2vec3"</span>: <span class="pl-s">"Path/To/Your/Dict/text2vec-base-chinsese"</span>
+}</pre></div>
+<h3>3.2、根据页面链接获取页面内容并下载为txt文档</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">scrape_clean_download</span>(<span class="pl-s1">urls</span>, <span class="pl-s1">download_path</span>):
+    <span class="pl-s1">number</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>
+    <span class="pl-s1">messages</span> <span class="pl-c1">=</span> []
+    <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">urls</span>:
+        <span class="pl-k">try</span>:
+            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">url</span>, <span class="pl-s1">headers</span> <span class="pl-c1">=</span> <span class="pl-s1">headers</span>).<span class="pl-s1">text</span>
+            <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-en">random</span>()<span class="pl-c1">*</span><span class="pl-c1">5</span>)
+            <span class="pl-s1">rough_text</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">"html.parser"</span>)
+            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-en">rough_text</span>([<span class="pl-s">'script'</span>, <span class="pl-s">'style'</span>, <span class="pl-s">'img'</span>, <span class="pl-s">'video'</span>, <span class="pl-s">'audio'</span>]):
+                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
+            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">rough_text</span>.<span class="pl-en">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
+                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
+            <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-en">join</span>(<span class="pl-s1">rough_text</span>.<span class="pl-en">get_text</span>().<span class="pl-en">split</span>())
+            <span class="pl-s1">path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">join</span>(<span class="pl-s1">download_path</span>, <span class="pl-s">f"webpage<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>.txt"</span>)
+            <span class="pl-k">try</span>:
+                <span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">path</span>,<span class="pl-s">"x"</span>,<span class="pl-s1">encoding</span><span class="pl-c1">=</span><span class="pl-s">"utf-8"</span>) <span class="pl-k">as</span> <span class="pl-s1">file</span>:
+                    <span class="pl-s1">file</span>.<span class="pl-en">write</span>(<span class="pl-s1">cleaned_text</span>)
+                <span class="pl-s1">messages</span>.<span class="pl-en">append</span>(<span class="pl-s">f"网页<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容已保存到<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>。"</span>)
+            <span class="pl-k">except</span> <span class="pl-v">FileExistsError</span>:
+                <span class="pl-s1">messages</span>.<span class="pl-en">append</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>文件已存在，无法保存。"</span>)
+            <span class="pl-k">finally</span>:
+                <span class="pl-s1">number</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
+        <span class="pl-k">except</span>:
+            <span class="pl-k">pass</span>
+    <span class="pl-k">return</span> <span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-en">join</span>(<span class="pl-s1">messages</span>)
+
+<span class="pl-k">def</span> <span class="pl-en">part_get_docs</span>(<span class="pl-s1">keyword</span>):
+    <span class="pl-k">if</span> <span class="pl-en">get_url</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)[<span class="pl-c1">0</span>]:
+        <span class="pl-k">return</span> <span class="pl-en">scrape_clean_download</span>(<span class="pl-s1">urls</span> <span class="pl-c1">=</span> <span class="pl-en">get_url</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)[<span class="pl-c1">0</span>], <span class="pl-s1">download_path</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"docs_path"</span>])
+    <span class="pl-k">else</span>:
+        <span class="pl-k">return</span> <span class="pl-en">get_url</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)[<span class="pl-c1">1</span>]</pre></div>
+<h3>3.3、切分文档</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">split_docs</span>():
+    <span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-v">DirectoryLoader</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"docs_path"</span>], <span class="pl-s1">loader_cls</span> <span class="pl-c1">=</span> <span class="pl-v">TextLoader</span>, <span class="pl-s1">loader_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"autodetect_encoding"</span>: <span class="pl-c1">True</span>}, <span class="pl-s1">use_multithreading</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">splited_docs</span> <span class="pl-c1">=</span> <span class="pl-v">CharacterTextSplitter</span>(<span class="pl-s1">chunk_size</span> <span class="pl-c1">=</span> <span class="pl-c1">2000</span>, <span class="pl-s1">chunk_overlap</span> <span class="pl-c1">=</span> <span class="pl-c1">200</span>).<span class="pl-en">split_documents</span>(<span class="pl-s1">docs</span>.<span class="pl-en">load</span>())
+    <span class="pl-k">return</span> <span class="pl-s1">splited_docs</span></pre></div>
+<h3>3.4、设置嵌入模型，建立向量库</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">set_embedding</span>(<span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s">"text2vec"</span>):
+    <span class="pl-k">try</span>:
+        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+                <span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
+                <span class="pl-s1">model_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">"device"</span>: <span class="pl-s">"cuda:0"</span>},
+                <span class="pl-s1">encode_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">'normalize_embeddings'</span>: <span class="pl-c1">False</span>}
+            )
+    <span class="pl-k">except</span> <span class="pl-v">AssertionError</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+                <span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
+                <span class="pl-s1">model_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">"device"</span>: <span class="pl-s">"cpu"</span>},
+                <span class="pl-s1">encode_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">'normalize_embeddings'</span>: <span class="pl-c1">False</span>}
+            )
+    <span class="pl-k">return</span> <span class="pl-s1">embedding</span>
+
+<span class="pl-k">def</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">docs</span>):
+    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>.<span class="pl-en">from_documents</span>(<span class="pl-s1">documents</span> <span class="pl-c1">=</span> <span class="pl-s1">docs</span>, <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+    <span class="pl-s1">db</span>.<span class="pl-en">persist</span>()
+    <span class="pl-k">return</span> <span class="pl-s1">db</span></pre></div>
+<h3>3.5、整合前两步内容并创建检索链</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">part_RAG_LLM</span>(<span class="pl-s1">question</span>):
+    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">exists</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>]):
+        <span class="pl-s1">os</span>.<span class="pl-en">mkdir</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+        <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-en">split_docs</span>())
+    <span class="pl-k">else</span>:
+        <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>(<span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+
+    <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(
+        <span class="pl-s1">search_type</span> <span class="pl-c1">=</span> <span class="pl-s">"similarity_score_threshold"</span>,
+        <span class="pl-s1">search_kwargs</span> <span class="pl-c1">=</span> {
+            <span class="pl-s">"k"</span>: <span class="pl-c1">3</span>,
+            <span class="pl-s">"score_threshold"</span>: <span class="pl-c1">0.3</span>
+            }
+    ) 
+    <span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-en">from_chain_type</span>(
+        <span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-s1">llm</span>,
+        <span class="pl-s1">chain_type</span> <span class="pl-c1">=</span> <span class="pl-s">"stuff"</span>,
+        <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">retriever</span>,
+    )
+    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">qa</span>.<span class="pl-en">invoke</span>(<span class="pl-s1">question</span>)
+    <span class="pl-k">return</span> <span class="pl-s1">response</span></pre></div>
+<h3>3.6、整合以上全部内容及爬虫并运行</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">combine_all</span>():
+    <span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-en">input</span>(<span class="pl-s">"输入搜索词："</span>)
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-en">part_get_docs</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)
+    <span class="pl-en">print</span> (<span class="pl-s1">result</span>)
+    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-en">part_RAG_LLM</span>(<span class="pl-s1">question</span> <span class="pl-c1">=</span> <span class="pl-s">f"根据你所阅读的文件，分别给各个文件和<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">keyword</span><span class="pl-kos">}</span></span>之间的关系排名。你的回答中只需要包含排名。"</span>)
+    <span class="pl-en">print</span> (<span class="pl-s1">response</span>)
+
+<span class="pl-en">combine_all</span>()</pre></div>
+<p>这样，一个根据关键词自动下载网页并部署知识库的程序就完成了。<br>
+最后将返回一个与txt文件相关的排名，由于txt文件指向网页本身，也可用作网页相关度排名。</p>
+<h3>3.7、简要评价</h3>
+<h4>3.7.1、该项目的局限性</h4>
+<p>该项目需要经历数个复杂的步骤，运行效率低下。且文本嵌入的效果很大程度上会取决于选用的嵌入模型、切分的文本块大小、检索链的参数设置等，未必比直接将文本内容输入语言模型的效果好。</p>
+<h4>3.7.2、该项目的前景</h4>
+<p>建立知识库可以很大程度上帮助解决目前语言模型普遍存在的”幻觉“（即语言模型捏造不存在的事情）现象。如果在网页爬取、页面筛选、嵌入模型选用、参数设置等方面继续迭代优化，应该能实现”通过简单输入一个关键词就能建立庞大知识库“的功能。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;">且行莫回顾，至处别君情。</div>
 
 </div>
