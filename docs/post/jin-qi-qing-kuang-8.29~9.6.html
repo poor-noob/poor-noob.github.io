@@ -307,7 +307,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 3、旧版本的排名只显示页面间的相关度；新版本加入评分机制，可以显示页面和关键词的实际相关度。</p>
 <h2>3.3、嵌入排名项目</h2>
 <p>类似于上两个版本的结合，由于向量间本身就可以计算相似度，因此提示词会更简短。<br>
-修改部分：<br>
+<strong>修改部分：</strong><br>
 将</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
 <p>修改为</p>
