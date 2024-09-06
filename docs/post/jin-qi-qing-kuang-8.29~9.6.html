@@ -266,8 +266,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>(<span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>, <span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-s1">embeddings</span>)
 
 <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
-<p>3.1.4、构建问答链和聊天函数<br>
-也就是应用嵌入好的文本文档，让大模型根据这些文档回答问题。如果文档中没有相关信息，AI就会回答“根据已知信息无法回答该问题”；如果有，AI就会根据已知信息进行回答，并返回相关的页面内容。</p>
+<h3>3.1.4、构建问答链和聊天函数</h3>
+<p>也就是应用嵌入好的文本文档，让大模型根据这些文档回答问题。如果文档中没有相关信息，AI就会回答“根据已知信息无法回答该问题”；如果有，AI就会根据已知信息进行回答，并返回相关的页面内容。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-en">from_chain_type</span>(
     <span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-s1">llm</span>,
     <span class="pl-s1">chain_type</span> <span class="pl-c1">=</span> <span class="pl-s">"stuff"</span>,
