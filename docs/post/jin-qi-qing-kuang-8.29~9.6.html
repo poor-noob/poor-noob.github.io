@@ -281,7 +281,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">result</span>[<span class="pl-s">"result"</span>]) <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span><span class="pl-cce">\n</span>参考资料：<span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-en">str</span>(<span class="pl-s1">result</span>[<span class="pl-s">"source_documents"</span>])
     <span class="pl-k">return</span> <span class="pl-s1">response</span>
 
-<span class="pl-s1">whlie</span> <span class="pl-v">True</span>:
+<span class="pl-k">while</span> <span class="pl-c1">True</span>:
     <span class="pl-en">chat</span>(<span class="pl-s1">query</span> <span class="pl-c1">=</span> <span class="pl-en">input</span>(<span class="pl-s">"问题："</span>) )</pre></div>
 <h3>3.1.5、运行</h3>
 <p>输入关键词后自动爬取页面并下载到本地，然后读取本地文档，存储为向量数据库，自动创建检索器和问答链，并开始聊天。</p>
