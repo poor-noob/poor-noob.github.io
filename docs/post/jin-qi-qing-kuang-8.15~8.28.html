@@ -120,7 +120,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">from</span> <span class="pl-s1">bs4</span> <span class="pl-k">import</span> <span class="pl-v">BeautifulSoup</span>
 
 <span class="pl-s1">headers</span> <span class="pl-c1">=</span> {
-    <span class="pl-s">"User-Agent"</span>: <span class="pl-v">UserAgent</span>().<span class="pl-s1">random</span>,
+    <span class="pl-s">"User-Agent"</span>: <span class="pl-en">UserAgent</span>().<span class="pl-c1">random</span>,
     <span class="pl-s">"Accept-Language"</span>: <span class="pl-s">"zh-CN,zh;q=0.9"</span>,
     <span class="pl-s">"Connection"</span>: <span class="pl-s">"keep-alive"</span>,
     <span class="pl-s">"Upgrade-Insecure-Requests"</span>: <span class="pl-s">"1"</span>,
@@ -131,24 +131,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">get_urls</span>(<span class="pl-s1">keyword</span>, <span class="pl-s1">max_links</span>):
     <span class="pl-s1">search_url</span> <span class="pl-c1">=</span> <span class="pl-s">f"https://www.baidu.com/s?wd=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">keyword</span><span class="pl-kos">}</span></span>"</span>    
     <span class="pl-k">try</span>:
-        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
-        <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-en">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>) 
+        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
+        <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-c1">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>) 
 
-        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-s1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
-            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-s1">text</span>, <span class="pl-s">"html.parser"</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-c1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
+            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-c1">text</span>, <span class="pl-s">"html.parser"</span>)
             <span class="pl-s1">urls</span> <span class="pl-c1">=</span> []
-            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-en">select</span>(<span class="pl-s">".t a"</span>):
-                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-en">get</span>(<span class="pl-s">"href"</span>)
+            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-c1">select</span>(<span class="pl-s">".t a"</span>):
+                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-c1">get</span>(<span class="pl-s">"href"</span>)
                 <span class="pl-k">if</span> <span class="pl-s1">link</span>:
-                    <span class="pl-s1">urls</span>.<span class="pl-en">append</span>(<span class="pl-s1">link</span>)
+                    <span class="pl-s1">urls</span>.<span class="pl-c1">append</span>(<span class="pl-s1">link</span>)
                 <span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">urls</span>) <span class="pl-c1">&gt;=</span> <span class="pl-s1">max_links</span>:
                     <span class="pl-k">break</span>
             <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s">""</span>
         
         <span class="pl-k">else</span>:
-            <span class="pl-k">return</span> [], <span class="pl-s">f"获取链接失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-s1">status_code</span><span class="pl-kos">}</span></span>"</span>
+            <span class="pl-k">return</span> [], <span class="pl-s">f"获取链接失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-c1">status_code</span><span class="pl-kos">}</span></span>"</span>
         
-    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-v">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-c1">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
         <span class="pl-k">return</span> [], <span class="pl-s">f"请求出错：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span>"</span></pre></div>
 <h3>1.3、根据获取到的链接，读取页面内容</h3>
 <p>原理同上，但是需要获取页面内的具体内容，且需要去除广告、图片、视频等无效内容。</p>
@@ -156,20 +156,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">web_content</span> <span class="pl-c1">=</span> []
     <span class="pl-k">for</span> <span class="pl-s1">number</span>, <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-en">enumerate</span>(<span class="pl-s1">urls</span>, <span class="pl-s1">start</span> <span class="pl-c1">=</span> <span class="pl-c1">1</span>):
         <span class="pl-k">try</span>:
-            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">url</span>, <span class="pl-s1">headers</span> <span class="pl-c1">=</span> <span class="pl-s1">headers</span>).<span class="pl-s1">text</span>
-            <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-en">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>)
+            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">url</span>, <span class="pl-s1">headers</span> <span class="pl-c1">=</span> <span class="pl-s1">headers</span>).<span class="pl-c1">text</span>
+            <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-c1">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>)
             
-            <span class="pl-s1">rough_text</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">"html.parser"</span>)
-            <span class="pl-s1">title</span> <span class="pl-c1">=</span> <span class="pl-s1">rough_text</span>.<span class="pl-s1">title</span>.<span class="pl-s1">string</span>
+            <span class="pl-s1">rough_text</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">"html.parser"</span>)
+            <span class="pl-s1">title</span> <span class="pl-c1">=</span> <span class="pl-s1">rough_text</span>.<span class="pl-c1">title</span>.<span class="pl-c1">string</span>
             <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-en">rough_text</span>([<span class="pl-s">'script'</span>, <span class="pl-s">'style'</span>, <span class="pl-s">'img'</span>, <span class="pl-s">'video'</span>, <span class="pl-s">'audio'</span>]):
-                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">rough_text</span>.<span class="pl-en">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
-                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-            <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-en">join</span>(<span class="pl-s1">rough_text</span>.<span class="pl-en">get_text</span>().<span class="pl-en">split</span>())
-            <span class="pl-s1">web_content</span>.<span class="pl-en">append</span>(<span class="pl-s1">cleaned_text</span>)
+                <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">rough_text</span>.<span class="pl-c1">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
+                <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+            <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-c1">join</span>(<span class="pl-s1">rough_text</span>.<span class="pl-c1">get_text</span>().<span class="pl-c1">split</span>())
+            <span class="pl-s1">web_content</span>.<span class="pl-c1">append</span>(<span class="pl-s1">cleaned_text</span>)
             <span class="pl-en">print</span>(<span class="pl-s">f"页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容已读取。<span class="pl-cce">\n</span>"</span>)
 
-        <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-v">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+        <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-c1">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
             <span class="pl-en">print</span>(<span class="pl-s">f"页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容读取失败: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span><span class="pl-cce">\n</span>"</span>)
 
     <span class="pl-k">return</span> <span class="pl-s1">web_content</span></pre></div>
@@ -190,7 +190,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s1">rank</span> <span class="pl-c1">=</span> <span class="pl-s">""</span>
 <span class="pl-s1">urls_md</span> <span class="pl-c1">=</span> <span class="pl-s">""</span>
 <span class="pl-s1">keyword_list</span> <span class="pl-c1">=</span> []
-<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-v">OllamaLLM</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
+<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-en">OllamaLLM</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
 
 <span class="pl-s1">analyze_messages</span> <span class="pl-c1">=</span> [
     (<span class="pl-s">"system"</span>, <span class="pl-s">"你是一位非常优秀的分析师。你擅长从八大维度分析一个行业：1、行业定义；2、行业分类；3、行业特征；4、发展历程；5、产品链分析；6、市场规模；7、政策分析；8、竞争格局"</span>),
@@ -218,7 +218,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>2.2、创建问答链</h3>
 <p>通过相同模板函数+不同提示词创建不同的问答链，用途上文已写。</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">thinking_chain</span>(<span class="pl-s1">messages</span>):
-    <span class="pl-s1">prompt</span> <span class="pl-c1">=</span> <span class="pl-v">ChatPromptTemplate</span>.<span class="pl-en">from_messages</span>(<span class="pl-s1">messages</span>)
+    <span class="pl-s1">prompt</span> <span class="pl-c1">=</span> <span class="pl-v">ChatPromptTemplate</span>.<span class="pl-c1">from_messages</span>(<span class="pl-s1">messages</span>)
     <span class="pl-s1">chain</span> <span class="pl-c1">=</span> <span class="pl-s1">prompt</span> <span class="pl-c1">|</span> <span class="pl-s1">model</span>
     <span class="pl-k">return</span> <span class="pl-s1">chain</span>
 
@@ -230,14 +230,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>通过定义相关的函数应用已有问答链。<br>
 获取搜索关键词的函数：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">get_keyword_list</span>(<span class="pl-s1">vocation</span>):
-    <span class="pl-s1">analysis</span> <span class="pl-c1">=</span> <span class="pl-s1">analyze_chain</span>.<span class="pl-en">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>})
+    <span class="pl-s1">analysis</span> <span class="pl-c1">=</span> <span class="pl-s1">analyze_chain</span>.<span class="pl-c1">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>})
     <span class="pl-en">print</span>(<span class="pl-s1">analysis</span>)
 
-    <span class="pl-s1">keyword_string</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword_chain</span>.<span class="pl-en">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"analysis"</span>: <span class="pl-s1">analysis</span>})
+    <span class="pl-s1">keyword_string</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword_chain</span>.<span class="pl-c1">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"analysis"</span>: <span class="pl-s1">analysis</span>})
     <span class="pl-en">print</span>(<span class="pl-s1">keyword_string</span>)
 
-    <span class="pl-s1">keyword_list</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-en">findall</span>(<span class="pl-s">r'"(.*?)"'</span>, <span class="pl-s1">keyword_string</span>)
-    <span class="pl-s1">keyword_list</span>.<span class="pl-en">append</span>(<span class="pl-s1">vocation</span>)
+    <span class="pl-s1">keyword_list</span> <span class="pl-c1">=</span> <span class="pl-s1">re</span>.<span class="pl-c1">findall</span>(<span class="pl-s">r'"(.*?)"'</span>, <span class="pl-s1">keyword_string</span>)
+    <span class="pl-s1">keyword_list</span>.<span class="pl-c1">append</span>(<span class="pl-s1">vocation</span>)
     <span class="pl-en">print</span>(<span class="pl-s1">keyword_list</span>)
 
     <span class="pl-k">return</span> <span class="pl-s1">keyword_list</span></pre></div>
@@ -246,7 +246,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">global</span> <span class="pl-s1">msg</span>, <span class="pl-s1">rank</span>, <span class="pl-s1">urls_md</span>
 
     <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">keyword_list</span>:
-        <span class="pl-s1">keyword_list</span>.<span class="pl-en">append</span>(<span class="pl-s1">vocation</span>)
+        <span class="pl-s1">keyword_list</span>.<span class="pl-c1">append</span>(<span class="pl-s1">vocation</span>)
 
     <span class="pl-k">for</span> <span class="pl-s1">keyword</span> <span class="pl-c1">in</span> <span class="pl-s1">keyword_list</span>:
         <span class="pl-en">print</span>(<span class="pl-s">"当前关键词为："</span> <span class="pl-c1">+</span> <span class="pl-s1">keyword</span> <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span>"</span>)
@@ -259,12 +259,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
                 <span class="pl-s1">msg</span> <span class="pl-c1">+=</span> <span class="pl-s">f"关键词：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">keyword</span><span class="pl-kos">}</span></span><span class="pl-cce">\n</span>为您找到<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-en">len</span>(<span class="pl-s1">urls</span>)<span class="pl-kos">}</span></span>个页面！<span class="pl-cce">\n</span>"</span>
 
                 <span class="pl-k">for</span> <span class="pl-s1">number</span>, <span class="pl-s1">page_content</span> <span class="pl-c1">in</span> <span class="pl-en">enumerate</span>(<span class="pl-s1">web_content</span>, <span class="pl-s1">start</span><span class="pl-c1">=</span><span class="pl-c1">1</span>):
-                    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">summarize_chain</span>.<span class="pl-en">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"page_content"</span>: <span class="pl-s1">page_content</span>})
-                    <span class="pl-en">print</span>(<span class="pl-s">f"相关页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容：<span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-en">str</span>(<span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-en">join</span>(<span class="pl-s1">web_content</span>)) <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span><span class="pl-cce">\n</span><span class="pl-cce">\n</span>"</span>)
+                    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">summarize_chain</span>.<span class="pl-c1">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"page_content"</span>: <span class="pl-s1">page_content</span>})
+                    <span class="pl-en">print</span>(<span class="pl-s">f"相关页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容：<span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-en">str</span>(<span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-c1">join</span>(<span class="pl-s1">web_content</span>)) <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span><span class="pl-cce">\n</span><span class="pl-cce">\n</span>"</span>)
                     <span class="pl-s1">msg</span> <span class="pl-c1">+=</span> <span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">keyword</span><span class="pl-kos">}</span></span>相关页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容总结：<span class="pl-cce">\n</span><span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-s1">response</span> <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span><span class="pl-cce">\n</span>"</span>
                     <span class="pl-en">print</span>(<span class="pl-s">f"相关页面<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容总结：<span class="pl-cce">\n</span><span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-s1">response</span> <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span>"</span>)
 
-                <span class="pl-s1">rank</span> <span class="pl-c1">=</span> <span class="pl-s1">ranking_chain</span>.<span class="pl-en">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"web_content"</span>: <span class="pl-s1">web_content</span>})
+                <span class="pl-s1">rank</span> <span class="pl-c1">=</span> <span class="pl-s1">ranking_chain</span>.<span class="pl-c1">invoke</span>({<span class="pl-s">"vocation"</span>: <span class="pl-s1">vocation</span>, <span class="pl-s">"web_content"</span>: <span class="pl-s1">web_content</span>})
                 <span class="pl-en">print</span>(<span class="pl-s">f"相关页面排名：<span class="pl-cce">\n</span><span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">rank</span><span class="pl-kos">}</span></span><span class="pl-cce">\n</span>"</span>)
 
                 <span class="pl-k">break</span>
@@ -288,51 +288,51 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">return</span> <span class="pl-s1">msg</span>, <span class="pl-s1">rank</span>, <span class="pl-s1">urls_md</span></pre></div>
 <h3>2.4 交互界面制作</h3>
 <p>封装上述代码中定义的函数，返回到gradio界面中实现交互。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Blocks</span>() <span class="pl-k">as</span> <span class="pl-s1">gradio_gui</span>:
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Blocks</span>() <span class="pl-k">as</span> <span class="pl-s1">gradio_gui</span>:
     <span class="pl-k">def</span> <span class="pl-en">search_engine_url_options</span>():
         <span class="pl-k">return</span> [<span class="pl-s">"baidu"</span>, <span class="pl-s">"bing"</span>, <span class="pl-s">"google"</span>]
     
-    <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Column</span>():
-        <span class="pl-s1">search_engine_url_choices</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Dropdown</span>(<span class="pl-s1">choices</span><span class="pl-c1">=</span><span class="pl-en">search_engine_url_options</span>(), <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索引擎："</span>, <span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">"baidu"</span>)
+    <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Column</span>():
+        <span class="pl-s1">search_engine_url_choices</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Dropdown</span>(<span class="pl-s1">choices</span><span class="pl-c1">=</span><span class="pl-en">search_engine_url_options</span>(), <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索引擎："</span>, <span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">"baidu"</span>)
 
-        <span class="pl-s1">search_vocation</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"请输入您要搜索的行业："</span>, <span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">"分析师"</span>)
+        <span class="pl-s1">search_vocation</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"请输入您要搜索的行业："</span>, <span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">"分析师"</span>)
 
-        <span class="pl-s1">search_max_links</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Slider</span>(<span class="pl-s1">minimum</span><span class="pl-c1">=</span><span class="pl-c1">1</span>, <span class="pl-s1">maximum</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">step</span><span class="pl-c1">=</span><span class="pl-c1">1</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"每个关键词的搜索页面数："</span>)
+        <span class="pl-s1">search_max_links</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Slider</span>(<span class="pl-s1">minimum</span><span class="pl-c1">=</span><span class="pl-c1">1</span>, <span class="pl-s1">maximum</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">step</span><span class="pl-c1">=</span><span class="pl-c1">1</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"每个关键词的搜索页面数："</span>)
 
-        <span class="pl-s1">start_keyword_generate_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Button</span>(<span class="pl-s">"生成关键词"</span>)
+        <span class="pl-s1">start_keyword_generate_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Button</span>(<span class="pl-s">"生成关键词"</span>)
 
-        <span class="pl-s1">search_keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">CheckboxGroup</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"相关关键词："</span>, <span class="pl-s1">choices</span><span class="pl-c1">=</span>[<span class="pl-s">"金融服务业"</span>, <span class="pl-s">"数字化进程"</span>, <span class="pl-s">"政策利率资本管制"</span>, <span class="pl-s">"分析师"</span>])
+        <span class="pl-s1">search_keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">CheckboxGroup</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"相关关键词："</span>, <span class="pl-s1">choices</span><span class="pl-c1">=</span>[<span class="pl-s">"金融服务业"</span>, <span class="pl-s">"数字化进程"</span>, <span class="pl-s">"政策利率资本管制"</span>, <span class="pl-s">"分析师"</span>])
         
-        <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Row</span>():
-            <span class="pl-s1">start_search_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Button</span>(<span class="pl-s">"开始检索"</span>)
+        <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Row</span>():
+            <span class="pl-s1">start_search_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Button</span>(<span class="pl-s">"开始检索"</span>)
 
-            <span class="pl-s1">clear_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Button</span>(<span class="pl-s">"清空"</span>)
+            <span class="pl-s1">clear_button</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Button</span>(<span class="pl-s">"清空"</span>)
 
-        <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Row</span>():
-            <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Column</span>(<span class="pl-s1">scale</span><span class="pl-c1">=</span><span class="pl-c1">3</span>):
-                <span class="pl-s1">search_response</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"检索结果："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">20</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示检索结果和总结。"</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+        <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Row</span>():
+            <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">scale</span><span class="pl-c1">=</span><span class="pl-c1">3</span>):
+                <span class="pl-s1">search_response</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"检索结果："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">20</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示检索结果和总结。"</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
 
-            <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-v">Column</span>(<span class="pl-s1">scale</span><span class="pl-c1">=</span><span class="pl-c1">1</span>):
-                <span class="pl-s1">search_rank</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"页面度排名："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示页面度排名。"</span>)
+            <span class="pl-k">with</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Column</span>(<span class="pl-s1">scale</span><span class="pl-c1">=</span><span class="pl-c1">1</span>):
+                <span class="pl-s1">search_rank</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"页面度排名："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示页面度排名。"</span>)
 
-        <span class="pl-s1">search_urls</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"相关链接："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示相关的页面链接。"</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+        <span class="pl-s1">search_urls</span> <span class="pl-c1">=</span> <span class="pl-s1">gr</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"相关链接："</span>, <span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">placeholder</span><span class="pl-c1">=</span><span class="pl-s">"这里显示相关的页面链接。"</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
 
         <span class="pl-k">def</span> <span class="pl-en">clear_response</span>():
-            <span class="pl-k">return</span> <span class="pl-s1">gr</span>.<span class="pl-en">update</span>(<span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">""</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
+            <span class="pl-k">return</span> <span class="pl-s1">gr</span>.<span class="pl-c1">update</span>(<span class="pl-s1">value</span><span class="pl-c1">=</span><span class="pl-s">""</span>, <span class="pl-s1">visible</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)
 
         <span class="pl-k">def</span> <span class="pl-en">generate_keyword</span>(<span class="pl-s1">search_vocation</span>):
             <span class="pl-s1">keyword_list</span> <span class="pl-c1">=</span> <span class="pl-en">get_keyword_list</span>(<span class="pl-s1">search_vocation</span>)
-            <span class="pl-k">return</span> <span class="pl-s1">gr</span>.<span class="pl-en">update</span>(<span class="pl-s1">choices</span><span class="pl-c1">=</span><span class="pl-s1">keyword_list</span>)
+            <span class="pl-k">return</span> <span class="pl-s1">gr</span>.<span class="pl-c1">update</span>(<span class="pl-s1">choices</span><span class="pl-c1">=</span><span class="pl-s1">keyword_list</span>)
         
         <span class="pl-k">def</span> <span class="pl-en">processing</span>(<span class="pl-s1">message</span>, <span class="pl-s1">search_engine_url</span>, <span class="pl-s1">search_max_links</span>, <span class="pl-s1">keyword_list</span>):
             <span class="pl-s1">response</span>, <span class="pl-s1">rank</span>, <span class="pl-s1">urls_md</span> <span class="pl-c1">=</span> <span class="pl-en">chat</span>(<span class="pl-s1">message</span>, <span class="pl-s1">search_engine_url</span>, <span class="pl-s1">search_max_links</span>, <span class="pl-s1">keyword_list</span>)
             <span class="pl-k">return</span> <span class="pl-s1">response</span>, <span class="pl-s1">rank</span>, <span class="pl-s1">urls_md</span>
         
-    <span class="pl-s1">start_keyword_generate_button</span>.<span class="pl-en">click</span>(<span class="pl-s1">generate_keyword</span>, <span class="pl-s1">inputs</span><span class="pl-c1">=</span><span class="pl-s1">search_vocation</span>, <span class="pl-s1">outputs</span><span class="pl-c1">=</span><span class="pl-s1">search_keyword</span>)
-    <span class="pl-s1">start_search_button</span>.<span class="pl-en">click</span>(<span class="pl-s1">processing</span>, <span class="pl-s1">inputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_vocation</span>, <span class="pl-s1">search_engine_url_choices</span>, <span class="pl-s1">search_max_links</span>, <span class="pl-s1">search_keyword</span>], <span class="pl-s1">outputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_response</span>, <span class="pl-s1">search_rank</span>, <span class="pl-s1">search_urls</span>])
-    <span class="pl-s1">clear_button</span>.<span class="pl-en">click</span>(<span class="pl-s1">clear_response</span>, <span class="pl-s1">outputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_response</span>, <span class="pl-s1">search_rank</span>, <span class="pl-s1">search_urls</span>])
+    <span class="pl-s1">start_keyword_generate_button</span>.<span class="pl-c1">click</span>(<span class="pl-s1">generate_keyword</span>, <span class="pl-s1">inputs</span><span class="pl-c1">=</span><span class="pl-s1">search_vocation</span>, <span class="pl-s1">outputs</span><span class="pl-c1">=</span><span class="pl-s1">search_keyword</span>)
+    <span class="pl-s1">start_search_button</span>.<span class="pl-c1">click</span>(<span class="pl-s1">processing</span>, <span class="pl-s1">inputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_vocation</span>, <span class="pl-s1">search_engine_url_choices</span>, <span class="pl-s1">search_max_links</span>, <span class="pl-s1">search_keyword</span>], <span class="pl-s1">outputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_response</span>, <span class="pl-s1">search_rank</span>, <span class="pl-s1">search_urls</span>])
+    <span class="pl-s1">clear_button</span>.<span class="pl-c1">click</span>(<span class="pl-s1">clear_response</span>, <span class="pl-s1">outputs</span><span class="pl-c1">=</span>[<span class="pl-s1">search_response</span>, <span class="pl-s1">search_rank</span>, <span class="pl-s1">search_urls</span>])
 
-<span class="pl-s1">gradio_gui</span>.<span class="pl-en">launch</span>()</pre></div>
+<span class="pl-s1">gradio_gui</span>.<span class="pl-c1">launch</span>()</pre></div>
 <p>这样，一个用于行业相关内容检索的小程序就完成了，以下为界面实例：</p>
 <h4>基础界面：</h4>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6db2a95c-c97c-4182-8c72-f2ae574ef9cb"><img src="https://github.com/user-attachments/assets/6db2a95c-c97c-4182-8c72-f2ae574ef9cb" alt="image" style="max-width: 100%;"></a></p>
@@ -361,7 +361,7 @@ path_dict定义文档读取路径和向量库存储路径，embedding_model_dict
 <span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">chat_models</span> <span class="pl-k">import</span> <span class="pl-v">ChatOllama</span>
 <span class="pl-k">from</span> <span class="pl-s1">langchain_community</span>.<span class="pl-s1">vectorstores</span> <span class="pl-k">import</span> <span class="pl-v">Chroma</span>
 
-<span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-v">ChatOllama</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
+<span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-en">ChatOllama</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
 
 <span class="pl-s1">path_dict</span> <span class="pl-c1">=</span> {
     <span class="pl-s">"docs_path"</span>: <span class="pl-s">"Path/To/Your/Dict/docs"</span>,
@@ -381,26 +381,26 @@ path_dict定义文档读取路径和向量库存储路径，embedding_model_dict
     <span class="pl-s1">messages</span> <span class="pl-c1">=</span> []
     <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">urls</span>:
         <span class="pl-k">try</span>:
-            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">url</span>, <span class="pl-s1">headers</span> <span class="pl-c1">=</span> <span class="pl-s1">headers</span>).<span class="pl-s1">text</span>
-            <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-en">random</span>()<span class="pl-c1">*</span><span class="pl-c1">5</span>)
-            <span class="pl-s1">rough_text</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">"html.parser"</span>)
+            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">url</span>, <span class="pl-s1">headers</span> <span class="pl-c1">=</span> <span class="pl-s1">headers</span>).<span class="pl-c1">text</span>
+            <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-c1">random</span>()<span class="pl-c1">*</span><span class="pl-c1">5</span>)
+            <span class="pl-s1">rough_text</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">"html.parser"</span>)
             <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-en">rough_text</span>([<span class="pl-s">'script'</span>, <span class="pl-s">'style'</span>, <span class="pl-s">'img'</span>, <span class="pl-s">'video'</span>, <span class="pl-s">'audio'</span>]):
-                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">rough_text</span>.<span class="pl-en">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
-                <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-            <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-en">join</span>(<span class="pl-s1">rough_text</span>.<span class="pl-en">get_text</span>().<span class="pl-en">split</span>())
-            <span class="pl-s1">path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">join</span>(<span class="pl-s1">download_path</span>, <span class="pl-s">f"webpage<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>.txt"</span>)
+                <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+            <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">rough_text</span>.<span class="pl-c1">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
+                <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+            <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-c1">join</span>(<span class="pl-s1">rough_text</span>.<span class="pl-c1">get_text</span>().<span class="pl-c1">split</span>())
+            <span class="pl-s1">path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">download_path</span>, <span class="pl-s">f"webpage<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>.txt"</span>)
             <span class="pl-k">try</span>:
                 <span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">path</span>,<span class="pl-s">"x"</span>,<span class="pl-s1">encoding</span><span class="pl-c1">=</span><span class="pl-s">"utf-8"</span>) <span class="pl-k">as</span> <span class="pl-s1">file</span>:
-                    <span class="pl-s1">file</span>.<span class="pl-en">write</span>(<span class="pl-s1">cleaned_text</span>)
-                <span class="pl-s1">messages</span>.<span class="pl-en">append</span>(<span class="pl-s">f"网页<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容已保存到<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>。"</span>)
+                    <span class="pl-s1">file</span>.<span class="pl-c1">write</span>(<span class="pl-s1">cleaned_text</span>)
+                <span class="pl-s1">messages</span>.<span class="pl-c1">append</span>(<span class="pl-s">f"网页<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">number</span><span class="pl-kos">}</span></span>的内容已保存到<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>。"</span>)
             <span class="pl-k">except</span> <span class="pl-v">FileExistsError</span>:
-                <span class="pl-s1">messages</span>.<span class="pl-en">append</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>文件已存在，无法保存。"</span>)
+                <span class="pl-s1">messages</span>.<span class="pl-c1">append</span>(<span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">path</span><span class="pl-kos">}</span></span>文件已存在，无法保存。"</span>)
             <span class="pl-k">finally</span>:
                 <span class="pl-s1">number</span> <span class="pl-c1">+=</span> <span class="pl-c1">1</span>
         <span class="pl-k">except</span>:
             <span class="pl-k">pass</span>
-    <span class="pl-k">return</span> <span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-en">join</span>(<span class="pl-s1">messages</span>)
+    <span class="pl-k">return</span> <span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-c1">join</span>(<span class="pl-s1">messages</span>)
 
 <span class="pl-k">def</span> <span class="pl-en">part_get_docs</span>(<span class="pl-s1">keyword</span>):
     <span class="pl-k">if</span> <span class="pl-en">get_url</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)[<span class="pl-c1">0</span>]:
@@ -409,19 +409,19 @@ path_dict定义文档读取路径和向量库存储路径，embedding_model_dict
         <span class="pl-k">return</span> <span class="pl-en">get_url</span>(<span class="pl-s1">keyword</span> <span class="pl-c1">=</span> <span class="pl-s1">keyword</span>)[<span class="pl-c1">1</span>]</pre></div>
 <h3>3.3、切分文档</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">split_docs</span>():
-    <span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-v">DirectoryLoader</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"docs_path"</span>], <span class="pl-s1">loader_cls</span> <span class="pl-c1">=</span> <span class="pl-v">TextLoader</span>, <span class="pl-s1">loader_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"autodetect_encoding"</span>: <span class="pl-c1">True</span>}, <span class="pl-s1">use_multithreading</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
-    <span class="pl-s1">splited_docs</span> <span class="pl-c1">=</span> <span class="pl-v">CharacterTextSplitter</span>(<span class="pl-s1">chunk_size</span> <span class="pl-c1">=</span> <span class="pl-c1">2000</span>, <span class="pl-s1">chunk_overlap</span> <span class="pl-c1">=</span> <span class="pl-c1">200</span>).<span class="pl-en">split_documents</span>(<span class="pl-s1">docs</span>.<span class="pl-en">load</span>())
+    <span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-en">DirectoryLoader</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"docs_path"</span>], <span class="pl-s1">loader_cls</span> <span class="pl-c1">=</span> <span class="pl-v">TextLoader</span>, <span class="pl-s1">loader_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"autodetect_encoding"</span>: <span class="pl-c1">True</span>}, <span class="pl-s1">use_multithreading</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)
+    <span class="pl-s1">splited_docs</span> <span class="pl-c1">=</span> <span class="pl-en">CharacterTextSplitter</span>(<span class="pl-s1">chunk_size</span> <span class="pl-c1">=</span> <span class="pl-c1">2000</span>, <span class="pl-s1">chunk_overlap</span> <span class="pl-c1">=</span> <span class="pl-c1">200</span>).<span class="pl-c1">split_documents</span>(<span class="pl-s1">docs</span>.<span class="pl-c1">load</span>())
     <span class="pl-k">return</span> <span class="pl-s1">splited_docs</span></pre></div>
 <h3>3.4、设置嵌入模型，建立向量库</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">set_embedding</span>(<span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s">"text2vec"</span>):
     <span class="pl-k">try</span>:
-        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-en">HuggingFaceEmbeddings</span>(
                 <span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
                 <span class="pl-s1">model_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">"device"</span>: <span class="pl-s">"cuda:0"</span>},
                 <span class="pl-s1">encode_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">'normalize_embeddings'</span>: <span class="pl-c1">False</span>}
             )
     <span class="pl-k">except</span> <span class="pl-v">AssertionError</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
-        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+        <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-en">HuggingFaceEmbeddings</span>(
                 <span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
                 <span class="pl-s1">model_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">"device"</span>: <span class="pl-s">"cpu"</span>},
                 <span class="pl-s1">encode_kwargs</span><span class="pl-c1">=</span>{<span class="pl-s">'normalize_embeddings'</span>: <span class="pl-c1">False</span>}
@@ -429,30 +429,30 @@ path_dict定义文档读取路径和向量库存储路径，embedding_model_dict
     <span class="pl-k">return</span> <span class="pl-s1">embedding</span>
 
 <span class="pl-k">def</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">docs</span>):
-    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>.<span class="pl-en">from_documents</span>(<span class="pl-s1">documents</span> <span class="pl-c1">=</span> <span class="pl-s1">docs</span>, <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
-    <span class="pl-s1">db</span>.<span class="pl-en">persist</span>()
+    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>.<span class="pl-c1">from_documents</span>(<span class="pl-s1">documents</span> <span class="pl-c1">=</span> <span class="pl-s1">docs</span>, <span class="pl-s1">embedding</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+    <span class="pl-s1">db</span>.<span class="pl-c1">persist</span>()
     <span class="pl-k">return</span> <span class="pl-s1">db</span></pre></div>
 <h3>3.5、整合前两步内容并创建检索链</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">part_RAG_LLM</span>(<span class="pl-s1">question</span>):
-    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">exists</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>]):
-        <span class="pl-s1">os</span>.<span class="pl-en">mkdir</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+    <span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>]):
+        <span class="pl-s1">os</span>.<span class="pl-c1">mkdir</span>(<span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
         <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-en">split_docs</span>())
     <span class="pl-k">else</span>:
-        <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>(<span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
+        <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-en">Chroma</span>(<span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-en">set_embedding</span>(), <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">path_dict</span>[<span class="pl-s">"chroma_path"</span>])
 
-    <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(
+    <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-c1">as_retriever</span>(
         <span class="pl-s1">search_type</span> <span class="pl-c1">=</span> <span class="pl-s">"similarity_score_threshold"</span>,
         <span class="pl-s1">search_kwargs</span> <span class="pl-c1">=</span> {
             <span class="pl-s">"k"</span>: <span class="pl-c1">3</span>,
             <span class="pl-s">"score_threshold"</span>: <span class="pl-c1">0.3</span>
             }
     ) 
-    <span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-en">from_chain_type</span>(
+    <span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-c1">from_chain_type</span>(
         <span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-s1">llm</span>,
         <span class="pl-s1">chain_type</span> <span class="pl-c1">=</span> <span class="pl-s">"stuff"</span>,
         <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">retriever</span>,
     )
-    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">qa</span>.<span class="pl-en">invoke</span>(<span class="pl-s1">question</span>)
+    <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">qa</span>.<span class="pl-c1">invoke</span>(<span class="pl-s1">question</span>)
     <span class="pl-k">return</span> <span class="pl-s1">response</span></pre></div>
 <h3>3.6、整合以上全部内容及爬虫并运行</h3>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">combine_all</span>():

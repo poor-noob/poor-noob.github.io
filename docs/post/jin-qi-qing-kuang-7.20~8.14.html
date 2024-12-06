@@ -116,7 +116,7 @@ ollama pull nomic-embed-text</pre></div>
 <p>引入库并定义ScrapeGraphAI相关参数：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">requests</span>, <span class="pl-s1">time</span>, <span class="pl-s1">gradio</span>
 <span class="pl-k">from</span> <span class="pl-s1">bs4</span> <span class="pl-k">import</span> <span class="pl-v">BeautifulSoup</span>
-<span class="pl-k">from</span> <span class="pl-s1">scrapegraphai</span>.<span class="pl-s1">graphs</span> <span class="pl-k">import</span> <span class="pl-v">SmartScraperGraph</span> <span class="pl-k">as</span> <span class="pl-v">SSG</span>
+<span class="pl-k">from</span> <span class="pl-s1">scrapegraphai</span>.<span class="pl-s1">graphs</span> <span class="pl-k">import</span> <span class="pl-v">SmartScraperGraph</span> <span class="pl-k">as</span> <span class="pl-c1">SSG</span>
 
 <span class="pl-s1">graph_config</span> <span class="pl-c1">=</span> {
     <span class="pl-s">"llm"</span>: {
@@ -153,24 +153,24 @@ ollama pull nomic-embed-text</pre></div>
     }
     
     <span class="pl-k">try</span>:
-        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
-        <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-c1">2</span>)
-        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-s1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
-            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-s1">text</span>, <span class="pl-s">'html.parser'</span>)
+        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
+        <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-c1">2</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-c1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
+            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-c1">text</span>, <span class="pl-s">'html.parser'</span>)
             <span class="pl-s1">urls</span> <span class="pl-c1">=</span> []
-            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-en">select</span>(<span class="pl-s">'.t a'</span>):
-                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-en">get</span>(<span class="pl-s">'href'</span>)
+            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-c1">select</span>(<span class="pl-s">'.t a'</span>):
+                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-c1">get</span>(<span class="pl-s">'href'</span>)
                 <span class="pl-k">if</span> <span class="pl-s1">link</span>:
-                    <span class="pl-s1">urls</span>.<span class="pl-en">append</span>(<span class="pl-s1">link</span>)
+                    <span class="pl-s1">urls</span>.<span class="pl-c1">append</span>(<span class="pl-s1">link</span>)
                 <span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">urls</span>) <span class="pl-c1">&gt;=</span> <span class="pl-s1">max_links</span>:
                     <span class="pl-k">break</span>
             <span class="pl-s1">problem</span><span class="pl-c1">=</span><span class="pl-s">""</span>
             <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s1">problem</span>
         <span class="pl-k">else</span>:
             <span class="pl-s1">urls</span><span class="pl-c1">=</span>[]
-            <span class="pl-s1">problem</span><span class="pl-c1">=</span><span class="pl-s">f"获取网页失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-s1">status_code</span><span class="pl-kos">}</span></span>"</span>
+            <span class="pl-s1">problem</span><span class="pl-c1">=</span><span class="pl-s">f"获取网页失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-c1">status_code</span><span class="pl-kos">}</span></span>"</span>
             <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s1">problem</span>
-    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-v">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-c1">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
         <span class="pl-s1">urls</span><span class="pl-c1">=</span>[]
         <span class="pl-s1">problem</span><span class="pl-c1">=</span><span class="pl-s">f"请求出错: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span>"</span>
         <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s1">problem</span></pre></div>
@@ -181,13 +181,13 @@ ollama pull nomic-embed-text</pre></div>
     <span class="pl-s1">primary_results</span><span class="pl-c1">=</span>[]
     <span class="pl-k">if</span> <span class="pl-s1">urls</span>:
         <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">urls</span>:
-            <span class="pl-s1">smart_scraper_graph</span> <span class="pl-c1">=</span> <span class="pl-v">SSG</span>(
+            <span class="pl-s1">smart_scraper_graph</span> <span class="pl-c1">=</span> <span class="pl-en">SSG</span>(
                 <span class="pl-s1">prompt</span><span class="pl-c1">=</span><span class="pl-s1">prompt</span>,
                 <span class="pl-s1">source</span><span class="pl-c1">=</span><span class="pl-s1">url</span>,
                 <span class="pl-s1">config</span><span class="pl-c1">=</span><span class="pl-s1">graph_config</span>
         )
-            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">smart_scraper_graph</span>.<span class="pl-en">run</span>()
-            <span class="pl-s1">primary_results</span>.<span class="pl-en">append</span>(<span class="pl-s1">result</span>)
+            <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">smart_scraper_graph</span>.<span class="pl-c1">run</span>()
+            <span class="pl-s1">primary_results</span>.<span class="pl-c1">append</span>(<span class="pl-s1">result</span>)
             <span class="pl-s1">results</span> <span class="pl-c1">=</span> <span class="pl-en">remove_blanks</span>(<span class="pl-s1">primary_results</span>)
         <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s1">results</span>
     <span class="pl-k">else</span>:
@@ -195,18 +195,18 @@ ollama pull nomic-embed-text</pre></div>
         <span class="pl-k">return</span> <span class="pl-s1">problem</span>, <span class="pl-s1">results</span></pre></div>
 <p>再通过gradio做一个简单的界面：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">def</span> <span class="pl-en">gradio_gui</span>():
-    <span class="pl-s1">keyword_input</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">5</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索关键词"</span>)
-    <span class="pl-s1">prompt_input</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"大模型提示词"</span>)
-    <span class="pl-s1">url_output</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">5</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索网页结果"</span>)
-    <span class="pl-s1">results_output</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-v">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"大模型总结"</span>)
-    <span class="pl-s1">interface</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-v">Interface</span>(
+    <span class="pl-s1">keyword_input</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">5</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索关键词"</span>)
+    <span class="pl-s1">prompt_input</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"大模型提示词"</span>)
+    <span class="pl-s1">url_output</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">5</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"搜索网页结果"</span>)
+    <span class="pl-s1">results_output</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-c1">Textbox</span>(<span class="pl-s1">lines</span><span class="pl-c1">=</span><span class="pl-c1">10</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"大模型总结"</span>)
+    <span class="pl-s1">interface</span><span class="pl-c1">=</span><span class="pl-s1">gradio</span>.<span class="pl-c1">Interface</span>(
         <span class="pl-s1">fn</span><span class="pl-c1">=</span><span class="pl-s1">main</span>,
         <span class="pl-s1">inputs</span><span class="pl-c1">=</span>[<span class="pl-s1">keyword_input</span>,<span class="pl-s1">prompt_input</span>],
         <span class="pl-s1">outputs</span><span class="pl-c1">=</span>[<span class="pl-s1">url_output</span>,<span class="pl-s1">results_output</span>],
         <span class="pl-s1">title</span><span class="pl-c1">=</span><span class="pl-s">"页面爬取&amp;大模型总结"</span>,
         <span class="pl-s1">description</span><span class="pl-c1">=</span><span class="pl-s">"输入搜索关键词和大模型提示词"</span>
     )
-    <span class="pl-s1">interface</span>.<span class="pl-en">launch</span>(<span class="pl-s1">share</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)</pre></div>
+    <span class="pl-s1">interface</span>.<span class="pl-c1">launch</span>(<span class="pl-s1">share</span><span class="pl-c1">=</span><span class="pl-c1">False</span>)</pre></div>
 <p>运行：</p>
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">gradio_gui</span>()</pre></div>
 <h3>页面如下：</h3>

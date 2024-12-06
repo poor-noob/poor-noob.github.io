@@ -142,7 +142,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">txt_path</span> <span class="pl-c1">=</span> <span class="pl-s">"PATH/TO/YOUR/DICT/txtDICT"</span>
 
 <span class="pl-s1">headers</span> <span class="pl-c1">=</span> {
-    <span class="pl-s">"User-Agent"</span>: <span class="pl-v">UserAgent</span>().<span class="pl-s1">random</span>,
+    <span class="pl-s">"User-Agent"</span>: <span class="pl-en">UserAgent</span>().<span class="pl-c1">random</span>,
     <span class="pl-s">"Accept-Language"</span>: <span class="pl-s">"zh-CN,zh;q=0.9"</span>,
     <span class="pl-s">"Connection"</span>: <span class="pl-s">"keep-alive"</span>,
     <span class="pl-s">"Upgrade-Insecure-Requests"</span>: <span class="pl-s">"1"</span>,
@@ -152,54 +152,54 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">def</span> <span class="pl-en">get_urls</span>(<span class="pl-s1">keyword</span>):
     <span class="pl-s1">search_url</span> <span class="pl-c1">=</span> <span class="pl-s">f"https://www.baidu.com/s?wd=<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">keyword</span><span class="pl-kos">}</span></span>"</span>    
     <span class="pl-k">try</span>:
-        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
-        <span class="pl-s1">time</span>.<span class="pl-en">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-en">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>)
+        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">search_url</span>, <span class="pl-s1">headers</span><span class="pl-c1">=</span><span class="pl-s1">headers</span>)
+        <span class="pl-s1">time</span>.<span class="pl-c1">sleep</span>(<span class="pl-s1">random</span>.<span class="pl-c1">random</span>() <span class="pl-c1">*</span> <span class="pl-c1">4</span>)
 
-        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-s1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
-            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-s1">text</span>, <span class="pl-s">"html.parser"</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-c1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
+            <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">response</span>.<span class="pl-c1">text</span>, <span class="pl-s">"html.parser"</span>)
             <span class="pl-s1">urls</span> <span class="pl-c1">=</span> []
-            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-en">select</span>(<span class="pl-s">".t a"</span>):
-                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-en">get</span>(<span class="pl-s">"href"</span>)
+            <span class="pl-k">for</span> <span class="pl-s1">url</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-c1">select</span>(<span class="pl-s">".t a"</span>):
+                <span class="pl-s1">link</span> <span class="pl-c1">=</span> <span class="pl-s1">url</span>.<span class="pl-c1">get</span>(<span class="pl-s">"href"</span>)
                 <span class="pl-k">if</span> <span class="pl-s1">link</span>:
-                    <span class="pl-s1">urls</span>.<span class="pl-en">append</span>(<span class="pl-s1">link</span>)
+                    <span class="pl-s1">urls</span>.<span class="pl-c1">append</span>(<span class="pl-s1">link</span>)
                 <span class="pl-k">if</span> <span class="pl-en">len</span>(<span class="pl-s1">urls</span>) <span class="pl-c1">&gt;=</span> <span class="pl-c1">3</span>:
                     <span class="pl-k">break</span>
             <span class="pl-k">return</span> <span class="pl-s1">urls</span>, <span class="pl-s">""</span>
         
         <span class="pl-k">else</span>:
-            <span class="pl-k">return</span> [], <span class="pl-s">f"获取链接失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-s1">status_code</span><span class="pl-kos">}</span></span>"</span>
+            <span class="pl-k">return</span> [], <span class="pl-s">f"获取链接失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-c1">status_code</span><span class="pl-kos">}</span></span>"</span>
         
-    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-v">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-c1">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
         <span class="pl-k">return</span> [], <span class="pl-s">f"请求出错：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span>"</span>
 
 <span class="pl-k">def</span> <span class="pl-en">clean_html</span>(<span class="pl-s1">html_content</span>):
-    <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-v">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">'html.parser'</span>)
+    <span class="pl-s1">soup</span> <span class="pl-c1">=</span> <span class="pl-en">BeautifulSoup</span>(<span class="pl-s1">html_content</span>, <span class="pl-s">'html.parser'</span>)
     <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-en">soup</span>([<span class="pl-s">'script'</span>, <span class="pl-s">'style'</span>, <span class="pl-s">'img'</span>, <span class="pl-s">'video'</span>, <span class="pl-s">'audio'</span>]):
-        <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-    <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-en">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
-        <span class="pl-s1">tag</span>.<span class="pl-en">decompose</span>()
-    <span class="pl-s1">text</span> <span class="pl-c1">=</span> <span class="pl-s1">soup</span>.<span class="pl-en">get_text</span>()
-    <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-en">join</span>(<span class="pl-s1">text</span>.<span class="pl-en">split</span>())
+        <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+    <span class="pl-k">for</span> <span class="pl-s1">tag</span> <span class="pl-c1">in</span> <span class="pl-s1">soup</span>.<span class="pl-c1">find_all</span>(<span class="pl-s1">class_</span><span class="pl-c1">=</span><span class="pl-k">lambda</span> <span class="pl-s1">c</span>: <span class="pl-s1">c</span> <span class="pl-c1">and</span> (<span class="pl-s">'ad'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span> <span class="pl-c1">or</span> <span class="pl-s">'advert'</span> <span class="pl-c1">in</span> <span class="pl-s1">c</span>)):
+        <span class="pl-s1">tag</span>.<span class="pl-c1">decompose</span>()
+    <span class="pl-s1">text</span> <span class="pl-c1">=</span> <span class="pl-s1">soup</span>.<span class="pl-c1">get_text</span>()
+    <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-s">' '</span>.<span class="pl-c1">join</span>(<span class="pl-s1">text</span>.<span class="pl-c1">split</span>())
     <span class="pl-k">return</span> <span class="pl-s1">cleaned_text</span>
 
 <span class="pl-k">def</span> <span class="pl-en">save_to_txt</span>(<span class="pl-s1">filename</span>, <span class="pl-s1">content</span>, <span class="pl-s1">path</span><span class="pl-c1">=</span><span class="pl-s">"./"</span>):
-    <span class="pl-s1">full_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">join</span>(<span class="pl-s1">path</span>, <span class="pl-s1">filename</span>)
-    <span class="pl-s1">os</span>.<span class="pl-en">mkdir</span>(<span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">dirname</span>(<span class="pl-s1">full_path</span>))
+    <span class="pl-s1">full_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">path</span>, <span class="pl-s1">filename</span>)
+    <span class="pl-s1">os</span>.<span class="pl-c1">mkdir</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">dirname</span>(<span class="pl-s1">full_path</span>))
     <span class="pl-k">with</span> <span class="pl-en">open</span>(<span class="pl-s1">full_path</span>, <span class="pl-s">'w'</span>, <span class="pl-s1">encoding</span><span class="pl-c1">=</span><span class="pl-s">'utf-8'</span>) <span class="pl-k">as</span> <span class="pl-s1">file</span>:
-        <span class="pl-s1">file</span>.<span class="pl-en">write</span>(<span class="pl-s1">content</span>)
+        <span class="pl-s1">file</span>.<span class="pl-c1">write</span>(<span class="pl-s1">content</span>)
 
 <span class="pl-k">def</span> <span class="pl-en">fetch_and_clean</span>(<span class="pl-s1">url</span>):
     <span class="pl-k">global</span> <span class="pl-s1">output_path</span>
     <span class="pl-k">try</span>:
-        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-en">get</span>(<span class="pl-s1">url</span>)
-        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-s1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
-            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-s1">text</span>
+        <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-s1">requests</span>.<span class="pl-c1">get</span>(<span class="pl-s1">url</span>)
+        <span class="pl-k">if</span> <span class="pl-s1">response</span>.<span class="pl-c1">status_code</span> <span class="pl-c1">==</span> <span class="pl-c1">200</span>:
+            <span class="pl-s1">html_content</span> <span class="pl-c1">=</span> <span class="pl-s1">response</span>.<span class="pl-c1">text</span>
             <span class="pl-s1">cleaned_text</span> <span class="pl-c1">=</span> <span class="pl-en">clean_html</span>(<span class="pl-s1">html_content</span>)
             <span class="pl-en">save_to_txt</span>(<span class="pl-s">'cleaned_content.txt'</span>, <span class="pl-s1">cleaned_text</span>, <span class="pl-s1">path</span><span class="pl-c1">=</span><span class="pl-s1">txt_path</span>)
             <span class="pl-en">print</span>(<span class="pl-s">f"内容已保存到<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">txt_path</span><span class="pl-kos">}</span></span>/cleaned_content.txt"</span>)
         <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">f"获取网页失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-s1">status_code</span><span class="pl-kos">}</span></span>"</span>)
-    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-v">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
+            <span class="pl-en">print</span>(<span class="pl-s">f"获取网页失败：<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">response</span>.<span class="pl-c1">status_code</span><span class="pl-kos">}</span></span>"</span>)
+    <span class="pl-k">except</span> <span class="pl-s1">requests</span>.<span class="pl-c1">RequestException</span> <span class="pl-k">as</span> <span class="pl-s1">e</span>:
         <span class="pl-en">print</span>(<span class="pl-s">f"请求出错: <span class="pl-s1"><span class="pl-kos">{</span><span class="pl-s1">e</span><span class="pl-kos">}</span></span>"</span>)
 
 <span class="pl-s1">url</span> <span class="pl-c1">=</span> <span class="pl-en">get_urls</span>(<span class="pl-s1">keyword</span><span class="pl-c1">=</span><span class="pl-en">input</span>(<span class="pl-s">"关键词输入："</span>))
@@ -210,12 +210,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-s">文档：{context}<span class="pl-cce">\n</span></span>
 <span class="pl-s">问题: {question}</span>
 <span class="pl-s">"""</span>
-<span class="pl-s1">prompts</span> <span class="pl-c1">=</span> <span class="pl-v">PromptTemplate</span>(
+<span class="pl-s1">prompts</span> <span class="pl-c1">=</span> <span class="pl-en">PromptTemplate</span>(
     <span class="pl-s1">template</span><span class="pl-c1">=</span><span class="pl-s1">prompt_template</span>, <span class="pl-s1">input_variables</span><span class="pl-c1">=</span>[<span class="pl-s">"context"</span>,<span class="pl-s">"question"</span>]
 )
 <span class="pl-s1">chain_type_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"prompt"</span>: <span class="pl-s1">prompts</span>}
 <span class="pl-s1">text_loader_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"autodetect_encoding"</span>: <span class="pl-c1">True</span>}
-<span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-v">ChatOllama</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
+<span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-en">ChatOllama</span>(<span class="pl-s1">model</span><span class="pl-c1">=</span><span class="pl-s">"qwen:7b"</span>)
 
 <span class="pl-s1">embedding_model_dict</span> <span class="pl-c1">=</span> {
     <span class="pl-s">"ernie-tiny"</span>: <span class="pl-s">"PATH/TO/YOUR/DICT/EMBEDDINGDICT/ernie-3.0-nano-zh"</span>,
@@ -226,17 +226,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-k">def</span> <span class="pl-en">load_txts</span>(<span class="pl-s1">directory</span> <span class="pl-c1">=</span> <span class="pl-s1">txt_path</span>):
-    <span class="pl-v">Dloader</span> <span class="pl-c1">=</span> <span class="pl-v">DirectoryLoader</span>(<span class="pl-s1">directory</span>, <span class="pl-s1">loader_cls</span> <span class="pl-c1">=</span> <span class="pl-v">TextLoader</span>, <span class="pl-s1">loader_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">text_loader_kwargs</span>, <span class="pl-s1">use_multithreading</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>)
-    <span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-v">Dloader</span>.<span class="pl-en">load</span>()
-    <span class="pl-s1">splitter</span> <span class="pl-c1">=</span> <span class="pl-v">CharacterTextSplitter</span>(<span class="pl-s1">chunk_size</span> <span class="pl-c1">=</span> <span class="pl-c1">150</span>, <span class="pl-s1">chunk_overlap</span> <span class="pl-c1">=</span> <span class="pl-c1">20</span>)
-    <span class="pl-s1">split_docs</span> <span class="pl-c1">=</span> <span class="pl-s1">splitter</span>.<span class="pl-en">split_documents</span>(<span class="pl-s1">docs</span>)
+    <span class="pl-v">Dloader</span> <span class="pl-c1">=</span> <span class="pl-en">DirectoryLoader</span>(<span class="pl-s1">directory</span>, <span class="pl-s1">loader_cls</span> <span class="pl-c1">=</span> <span class="pl-v">TextLoader</span>, <span class="pl-s1">loader_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">text_loader_kwargs</span>, <span class="pl-s1">use_multithreading</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>)
+    <span class="pl-s1">docs</span> <span class="pl-c1">=</span> <span class="pl-v">Dloader</span>.<span class="pl-c1">load</span>()
+    <span class="pl-s1">splitter</span> <span class="pl-c1">=</span> <span class="pl-en">CharacterTextSplitter</span>(<span class="pl-s1">chunk_size</span> <span class="pl-c1">=</span> <span class="pl-c1">150</span>, <span class="pl-s1">chunk_overlap</span> <span class="pl-c1">=</span> <span class="pl-c1">20</span>)
+    <span class="pl-s1">split_docs</span> <span class="pl-c1">=</span> <span class="pl-s1">splitter</span>.<span class="pl-c1">split_documents</span>(<span class="pl-s1">docs</span>)
     <span class="pl-k">return</span> <span class="pl-s1">split_docs</span>
 
 <span class="pl-k">try</span>:
     <span class="pl-k">def</span> <span class="pl-en">load_embedding_model</span>(<span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s">"text2vec3"</span>): 
         <span class="pl-s1">encode_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"normalize_embeddings"</span>: <span class="pl-c1">False</span>}
         <span class="pl-s1">model_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"device"</span>: <span class="pl-s">"cuda:0"</span>}
-        <span class="pl-k">return</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+        <span class="pl-k">return</span> <span class="pl-en">HuggingFaceEmbeddings</span>(
             <span class="pl-s1">model_name</span> <span class="pl-c1">=</span> <span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
             <span class="pl-s1">model_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">model_kwargs</span>,
             <span class="pl-s1">encode_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">encode_kwargs</span>
@@ -247,28 +247,28 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-k">def</span> <span class="pl-en">load_embedding_model</span>(<span class="pl-s1">model_name</span><span class="pl-c1">=</span><span class="pl-s">"ernie-tiny"</span>): 
         <span class="pl-s1">encode_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"normalize_embeddings"</span>: <span class="pl-c1">False</span>}
         <span class="pl-s1">model_kwargs</span> <span class="pl-c1">=</span> {<span class="pl-s">"device"</span>: <span class="pl-s">"cpu"</span>}
-        <span class="pl-k">return</span> <span class="pl-v">HuggingFaceEmbeddings</span>(
+        <span class="pl-k">return</span> <span class="pl-en">HuggingFaceEmbeddings</span>(
             <span class="pl-s1">model_name</span> <span class="pl-c1">=</span> <span class="pl-s1">embedding_model_dict</span>[<span class="pl-s1">model_name</span>],
             <span class="pl-s1">model_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">model_kwargs</span>,
             <span class="pl-s1">encode_kwargs</span> <span class="pl-c1">=</span> <span class="pl-s1">encode_kwargs</span>
         )
     <span class="pl-s1">embeddings</span> <span class="pl-c1">=</span> <span class="pl-en">load_embedding_model</span>(<span class="pl-s">"text2vec3"</span>)
 <span class="pl-k">def</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">docs</span>, <span class="pl-s1">embeddings</span>, <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>):
-    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>.<span class="pl-en">from_documents</span>(<span class="pl-s1">docs</span>, <span class="pl-s1">embeddings</span>, <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">persist_directory</span>)
-    <span class="pl-s1">db</span>.<span class="pl-en">persist</span>()
+    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>.<span class="pl-c1">from_documents</span>(<span class="pl-s1">docs</span>, <span class="pl-s1">embeddings</span>, <span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s1">persist_directory</span>)
+    <span class="pl-s1">db</span>.<span class="pl-c1">persist</span>()
     <span class="pl-k">return</span> <span class="pl-s1">db</span>
 
-<span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">os</span>.<span class="pl-s1">path</span>.<span class="pl-en">exists</span>(<span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>):
-    <span class="pl-s1">os</span>.<span class="pl-en">makedirs</span>(<span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>)
+<span class="pl-k">if</span> <span class="pl-c1">not</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>):
+    <span class="pl-s1">os</span>.<span class="pl-c1">makedirs</span>(<span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>)
     <span class="pl-s1">documents</span> <span class="pl-c1">=</span> <span class="pl-en">load_txts</span>()
     <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-en">store_chroma</span>(<span class="pl-s1">documents</span>, <span class="pl-s1">embeddings</span>)
 <span class="pl-k">else</span>:
-    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-v">Chroma</span>(<span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>, <span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-s1">embeddings</span>)
+    <span class="pl-s1">db</span> <span class="pl-c1">=</span> <span class="pl-en">Chroma</span>(<span class="pl-s1">persist_directory</span> <span class="pl-c1">=</span> <span class="pl-s">"PATH/TO/YOUR/DICT/VECTORSTROEDICT/"</span>, <span class="pl-s1">embedding_function</span> <span class="pl-c1">=</span> <span class="pl-s1">embeddings</span>)
 
-<span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
+<span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-c1">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
 <h3>3.1.4、构建问答链和聊天函数</h3>
 <p>也就是应用嵌入好的文本文档，让大模型根据这些文档回答问题。如果文档中没有相关信息，AI就会回答“根据已知信息无法回答该问题”；如果有，AI就会根据已知信息进行回答，并返回相关的页面内容。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-en">from_chain_type</span>(
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">qa</span> <span class="pl-c1">=</span> <span class="pl-v">RetrievalQA</span>.<span class="pl-c1">from_chain_type</span>(
     <span class="pl-s1">llm</span> <span class="pl-c1">=</span> <span class="pl-s1">llm</span>,
     <span class="pl-s1">chain_type</span> <span class="pl-c1">=</span> <span class="pl-s">"stuff"</span>,
     <span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">retriever</span>,
@@ -277,7 +277,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 )
 
 <span class="pl-k">def</span> <span class="pl-en">chat</span>(<span class="pl-s1">query</span>):
-    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">qa</span>.<span class="pl-en">invoke</span>({<span class="pl-s">"query"</span>:<span class="pl-s1">query</span>})
+    <span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">qa</span>.<span class="pl-c1">invoke</span>({<span class="pl-s">"query"</span>:<span class="pl-s1">query</span>})
     <span class="pl-s1">response</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">result</span>[<span class="pl-s">"result"</span>]) <span class="pl-c1">+</span> <span class="pl-s">"<span class="pl-cce">\n</span><span class="pl-cce">\n</span>参考资料：<span class="pl-cce">\n</span>"</span> <span class="pl-c1">+</span> <span class="pl-en">str</span>(<span class="pl-s1">result</span>[<span class="pl-s">"source_documents"</span>])
     <span class="pl-k">return</span> <span class="pl-s1">response</span>
 
@@ -309,9 +309,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>类似于上两个版本的结合，由于向量间本身就可以计算相似度，因此提示词会更简短。<br>
 <strong>修改部分：</strong><br>
 将</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-c1">as_retriever</span>(<span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity"</span>)</pre></div>
 <p>修改为</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-en">as_retriever</span>(
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">retriever</span> <span class="pl-c1">=</span> <span class="pl-s1">db</span>.<span class="pl-c1">as_retriever</span>(
     <span class="pl-s1">search_type</span><span class="pl-c1">=</span><span class="pl-s">"similarity_score_threshold"</span>,
     <span class="pl-s1">search_kwargs</span><span class="pl-c1">=</span>{
         <span class="pl-s">"k"</span>: <span class="pl-c1">3</span>,
